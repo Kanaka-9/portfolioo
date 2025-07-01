@@ -1,54 +1,68 @@
-  import React from 'react';
-  import { Link } from 'react-router-dom';
-  import Projects from './Projects';
-  import Education from './Education';
-  import Contact from './Contact';
-  function Home() {
-    return (
-      <div className="bg-gray-100 min-h-screen p-6">
-        <div className="max-w-4xl mx-auto space-y-10">
+import React from 'react';
+import { motion } from 'framer-motion';
+import Projects from './Projects';
+import Education from './Education';
+import Contact from './Contact';
 
-          {/* Hero Section */}
-          <section className="text-center py-10">
-            <h1 className="text-5xl font-bold text-indigo-700 mb-4">Hi, I'm Sri Kanaka Vaishnavi</h1>
-            <p className="text-xl text-gray-800">
-              A passionate Frontend Developer crafting modern web experiences with React & Tailwind CSS.
-            </p>
-          </section>
+function Home() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-white via-indigo-50 to-blue-100 text-gray-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
 
-          {/* About Me Section */}
-          <section className="bg-white rounded-xl shadow-md p-8">
-            <h2 className="text-3xl font-semibold text-indigo-600 mb-4">About Me</h2>
-            <p className="text-gray-700 leading-relaxed">
-              I'm an Electronics student but have a deep interest in web development and UI/UX design.
-              I specialize in building responsive and performant user interfaces using modern tools like
-              <span className="text-indigo-500 font-medium"> React</span> and 
-              <span className="text-indigo-500 font-medium"> Tailwind CSS</span>.
-            </p>
-            <p className="text-gray-700 mt-4">
-              I'm always learning and experimenting with new technologies. Outside of coding, I enjoy reading,
-              working on side projects, and contributing to open-source.
-            </p>
-          </section>
-          <div>
+        {/* Hero Section */}
+        <motion.section 
+          className="text-center pt-24"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl sm:text-5xl font-bold text-indigo-700">
+            Hi, I'm Sri Kanaka Vaishnavi
+          </h1>
+          <p className="text-lg sm:text-xl mt-4 max-w-2xl mx-auto">
+            A frontend developer crafting beautiful web experiences with 
+            <span className="text-indigo-600 font-semibold"> React</span> & 
+            <span className="text-indigo-600 font-semibold"> Tailwind CSS</span>.
+          </p>
+        </motion.section>
 
-            <section id="projects" className="pt-24 scroll-mt-24">
-  <Projects />
-</section>
+        {/* About Me */}
+        <motion.section 
+          className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg p-8 sm:p-10 border border-indigo-100"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-semibold text-indigo-600 mb-4">About Me</h2>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+            I'm currently pursuing a degree in Electronics and Communication at VNRVJIET, with a deep passion for UI/UX and web development.
+            I enjoy building elegant, responsive interfaces using 
+            <span className="text-indigo-500 font-medium"> React</span> and 
+            <span className="text-indigo-500 font-medium"> Tailwind CSS</span>.
+          </p>
+          <p className="mt-4 text-gray-700">
+            I'm always learning, exploring new tech, and building side projects. I'm also passionate about open-source and crafting great user experiences.
+          </p>
+        </motion.section>
 
-          </div>
-          <div>
+        {/* Projects Section */}
+        <section id="projects" className="scroll-mt-24 pt-4">
+          <Projects />
+        </section>
 
-            <section id='education'  className="pt-24 scroll-mt-24"><Education/></section>
-          </div>
-            <div>
+        {/* Education Section */}
+        <section id="education" className="scroll-mt-24 pt-4">
+          <Education />
+        </section>
 
-            <section id='contact'  className="pt-24 scroll-mt-24"><Contact/></section>
-          </div>
-        </div>
+        {/* Contact Section */}
+        <section id="contact" className="scroll-mt-24 pt-4">
+          <Contact />
+        </section>
+
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  export default Home;
-
+export default Home;
