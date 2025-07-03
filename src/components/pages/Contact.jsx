@@ -9,10 +9,10 @@ function Contact() {
 
     emailjs
       .sendForm(
-        'service_cxoxvfa',     // from EmailJS dashboard
-        'template_f4osk9d',    // from EmailJS dashboard
+        'service_cxoxvfa',
+        'template_f4osk9d',
         form.current,
-        '1mstnJaxfyXyK3jGM'      // from EmailJS dashboard
+        '1mstnJaxfyXyK3jGM'
       )
       .then(
         () => {
@@ -27,41 +27,41 @@ function Contact() {
   };
 
   return (
-    <div className="bg-gray-50 px-6 pt-6 pb-10 scroll-mt-24" id="contact">
-      <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">📞 Contact Me</h1>
+    <div id="contact" className="bg-slate-800 text-white rounded-2xl shadow-lg p-8 sm:p-10 border border-slate-700">
+      <h1 className="text-3xl font-bold text-center text-indigo-400 mb-6">📞 Contact Me</h1>
 
-      <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md">
+      <div className="max-w-2xl mx-auto bg-slate-700 p-6 rounded-xl shadow-md border border-slate-600">
         <form ref={form} onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className="block text-sm font-medium text-indigo-200">Name</label>
             <input
               type="text"
               name="name"
               required
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full mt-1 px-4 py-2 border border-slate-500 bg-slate-800 text-white rounded-md"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-indigo-200">Email</label>
             <input
               type="email"
               name="email"
               required
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full mt-1 px-4 py-2 border border-slate-500 bg-slate-800 text-white rounded-md"
             />
           </div>
-          <div> 
-            <label className="block text-sm font-medium text-gray-700">Message</label>
+          <div>
+            <label className="block text-sm font-medium text-indigo-200">Message</label>
             <textarea
               name="message"
               rows="5"
               required
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full mt-1 px-4 py-2 border border-slate-500 bg-slate-800 text-white rounded-md"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+            className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition"
           >
             Send Message
           </button>
