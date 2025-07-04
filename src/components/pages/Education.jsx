@@ -19,8 +19,8 @@ function Education() {
       desc: "Focused on software development, python, and machine learning.",
     },
     {
-      degree: "High School",
-      school: "Narayana High School",
+      degree: "Intermediate (MPC)",
+      school: "Narayana Junior College",
       year: "2020 - 2022",
       desc: "Studied Mathematics, Physics, Chemistry.",
     },
@@ -54,6 +54,7 @@ function Education() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={eduVariants}
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 32px 0 rgba(0, 255, 255, 0.1)" }}
           >
             <h2 className="text-xl font-bold text-cyan-200">{edu.degree}</h2>
             <h3 className="text-md text-indigo-100">{edu.school}</h3>

@@ -68,6 +68,7 @@ function Projects() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
+            whileHover={{ scale: 1.04, boxShadow: "0 8px 32px 0 rgba(0, 255, 255, 0.2)" }}
           >
             <h3 className="text-2xl font-bold text-cyan-200">{project.title}</h3>
             <p className="mt-2 text-indigo-100">{project.description}</p>
@@ -113,6 +114,7 @@ function Projects() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={skillVariants}
+            whileHover={{ scale: 1.1, backgroundColor: "#67e8f9" }}
           >
             {skill}
           </motion.span>
