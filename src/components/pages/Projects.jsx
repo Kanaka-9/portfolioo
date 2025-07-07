@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { PinContainer } from '../pincontainer' // adjust the path if needed
 
 const projects = [
   {
@@ -16,7 +17,6 @@ const projects = [
   }
 ]
 
-
 const skills = [
   'HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS',
   'Framer Motion', 'Git', 'Figma', 'Responsive Design'
@@ -30,7 +30,7 @@ const fadeIn = {
 const Projects = () => {
   return (
     <section id="projects" className="space-y-16 py-20 bg-white text-black px-6">
-      {/* Projects Header */}
+      {/* Header */}
       <motion.h2
         className="text-3xl font-bold text-center"
         initial="hidden"
@@ -41,39 +41,33 @@ const Projects = () => {
         Projects
       </motion.h2>
 
-      {/* Projects Grid */}
+      {/* Projects Grid with 3D Effect */}
       <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-white border border-gray-200 shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition duration-300"
             initial="hidden"
             whileInView="visible"
             variants={fadeIn}
             transition={{ delay: index * 0.2 }}
+            className="flex justify-center"
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-6 space-y-3">
-              <h3 className="text-xl font-semibold">{project.title}</h3>
-              <p className="text-gray-600 text-sm">{project.description}</p>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-2 text-sm font-medium text-white bg-black px-4 py-2 rounded hover:bg-gray-800 transition"
-              >
-                View Project
-              </a>
-            </div>
+            <PinContainer title={project.title} href={project.link}>
+              <div className="flex flex-col items-start gap-3 w-72 h-60 text-white">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-32 object-cover rounded-md"
+                />
+                <h3 className="text-lg font-semibold">{project.title}</h3>
+                <p className="text-sm text-white/70 line-clamp-3">{project.description}</p>
+              </div>
+            </PinContainer>
           </motion.div>
         ))}
       </div>
 
-      {/* Skills Section */}
+      {/* Skills */}
       <motion.div
         className="max-w-4xl mx-auto text-center mt-16"
         initial="hidden"
