@@ -1,21 +1,19 @@
-import React from 'react';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import Routers from '../routers/Routers';
-import { BrowserRouter as Router } from 'react-router-dom';
+// src/components/layout/Layout.jsx
+import React, { Fragment } from "react";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import Routers from "../routers/Routers";
 
-function Layout() {
+const Layout = () => {
   return (
-    <Router>
+    <Fragment>
       <Header />
-      <div className="flex-1 flex flex-col">
-        <main className="flex-1">
-          <Routers />
-        </main>
-        <Footer />
-      </div>
-    </Router>
+      <main className="flex-grow">
+        <Routers />
+      </main>
+      <Footer />
+    </Fragment>
   );
-}
+};
 
 export default Layout;

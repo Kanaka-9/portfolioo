@@ -14,18 +14,7 @@ const Home = () => {
 
   return (
     <div className="bg-white text-black min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 bg-white shadow z-10">
-        <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="font-bold text-lg">Vaishnavi</h1>
-          <ul className="flex space-x-6 text-sm font-medium text-gray-700">
-            <li><button onClick={() => setActiveSection('about')} className="hover:text-black">About</button></li>
-            <li><button onClick={() => setActiveSection('projects')} className="hover:text-black">Projects</button></li>
-            <li><button onClick={() => setActiveSection('education')} className="hover:text-black">Education</button></li>
-            <li><button onClick={() => setActiveSection('contact')} className="hover:text-black">Contact</button></li>
-          </ul>
-        </nav>
-      </header>
+
 
       {/* Main content */}
       <main className="max-w-4xl mx-auto py-16 px-6 space-y-24">
@@ -84,14 +73,7 @@ const Home = () => {
         {activeSection === 'education' && <Education />}
         {activeSection === 'contact' && <Contact />}
         
-      {/* Projects */}
-      <Projects />
 
-      {/* Education */}
-      <Education />
-
-      {/* Contact */}
-      <Contact />
       </main>
     </div>
   );
