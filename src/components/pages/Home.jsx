@@ -72,6 +72,9 @@ const Home = () => {
         {activeSection === 'projects' && <Projects />}
         {activeSection === 'education' && <Education />}
         {activeSection === 'contact' && <Contact />}
+        <Projects/>
+        <Education />
+        <Contact />
         
 
       </main>
