@@ -1,104 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Projects from './Projects';
 import Education from './Education';
 import Contact from './Contact';
 
-const sectionVariants = {
+const fade = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 }
 };
 
-function Home() {
-  return (
-    <div id="home" className="min-h-screen bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-700 text-white transition-colors duration-300">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+const Home = () => {
+  const [activeSection, setActiveSection] = useState('about'); // Default section
 
-        {/* Hero Section */}
+  return (
+    <div className="bg-white text-black min-h-screen">
+      {/* Header */}
+      <header className="sticky top-0 bg-white shadow z-10">
+        <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="font-bold text-lg">Vaishnavi</h1>
+          <ul className="flex space-x-6 text-sm font-medium text-gray-700">
+            <li><button onClick={() => setActiveSection('about')} className="hover:text-black">About</button></li>
+            <li><button onClick={() => setActiveSection('projects')} className="hover:text-black">Projects</button></li>
+            <li><button onClick={() => setActiveSection('education')} className="hover:text-black">Education</button></li>
+            <li><button onClick={() => setActiveSection('contact')} className="hover:text-black">Contact</button></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Main content */}
+      <main className="max-w-4xl mx-auto py-16 px-6 space-y-24">
         <motion.section
-          id="home"
-          className="text-center pt-32 scroll-mt-24"
-          variants={sectionVariants}
+          className="text-center space-y-6"
           initial="hidden"
           animate="visible"
-          transition={{ duration: 0.8, type: "spring" }}
+          variants={fade}
+          transition={{ duration: 0.8 }}
         >
           <motion.h1
-            className="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-cyan-200 to-indigo-400 drop-shadow-lg"
+            className="text-5xl sm:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-800"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.7, type: "spring" }}
+            transition={{ delay: 0.2 }}
           >
-            Hi, I'm Sri Kanaka Vaishnavi
+            Hi, I’m Sri Kanaka Vaishnavi
           </motion.h1>
           <motion.p
-            className="text-xl sm:text-2xl mt-6 max-w-2xl mx-auto text-indigo-100 font-light"
+            className="text-xl sm:text-2xl text-gray-700"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.5 }}
           >
-            A frontend developer crafting beautiful web experiences with
-            <span className="text-cyan-200 font-semibold"> React</span> &
-            <span className="text-cyan-200 font-semibold"> Tailwind CSS</span>.
+            A frontend developer crafting elegant & responsive experiences
           </motion.p>
         </motion.section>
 
-        {/* About Me Section */}
-        <motion.section
-          id="about"
-          className="bg-white/10 backdrop-blur-md shadow-2xl rounded-3xl p-10 border border-white/20 scroll-mt-24"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, type: "spring" }}
-        >
-          <motion.h2
-            className="text-3xl font-bold text-cyan-200 mb-4"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-          >
-            About Me
-          </motion.h2>
-          <motion.p
-            className="text-lg leading-relaxed text-indigo-100"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-          >
-            I'm currently pursuing a degree in Electronics and Communication at VNRVJIET, with a deep passion for UI/UX and web development.
-            I enjoy building elegant, responsive interfaces using
-            <span className="text-cyan-200 font-medium"> React</span> and
-            <span className="text-cyan-200 font-medium"> Tailwind CSS</span>.
-          </motion.p>
-          <motion.p
-            className="mt-4 text-indigo-100"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            I'm always learning, exploring new tech, and building side projects. I'm also passionate about open-source and crafting great user experiences.
-          </motion.p>
-        </motion.section>
+        {/* Conditional Sections */}
+        {activeSection === 'about' && (
+          <section id="about">
+            <motion.h2
+              className="text-3xl font-semibold text-black mb-6"
+              initial="hidden"
+              whileInView="visible"
+              variants={fade}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="text-gray-700 leading-relaxed"
+              initial="hidden"
+              whileInView="visible"
+              variants={fade}
+              transition={{ delay: 0.2 }}
+            >
+              I'm currently pursuing my B.Tech in Computer Science at XYZ University, where I focus on web development
+              and UI/UX design. I enjoy building elegant, responsive interfaces using React and Tailwind CSS.
+              I'm always learning, exploring new tech, and building side projects.
+              I'm also passionate about open-source and crafting great user experiences.
+            </motion.p>
+          </section>
+        )}
 
-        {/* Projects Section */}
-        <section id="projects" className="scroll-mt-24 pt-4">
-          <Projects />
-        </section>
+        {activeSection === 'projects' && <Projects />}
+        {activeSection === 'education' && <Education />}
+        {activeSection === 'contact' && <Contact />}
+        
+      {/* Projects */}
+      <Projects />
 
-        {/* Education Section */}
-        <section id="education" className="scroll-mt-24 pt-4">
-          <Education />
-        </section>
+      {/* Education */}
+      <Education />
 
-        {/* Contact Section */}
-        <section id="contact" className="scroll-mt-24 pt-4">
-          <Contact />
-        </section>
-      </div>
+      {/* Contact */}
+      <Contact />
+      </main>
     </div>
   );
-}
+};
 
 export default Home;

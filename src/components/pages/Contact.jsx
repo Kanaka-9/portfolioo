@@ -1,18 +1,20 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import React, { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 
-function Contact() {
-  const form = useRef();
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const Contact = () => {
+  const form = useRef()
+  const [isSending, setIsSending] = useState(false)
+  const [messageSent, setMessageSent] = useState(false)
 
-    const email = form.current.email.value;
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/.test(email)) {
-      alert('Please enter a valid .com email address');
-      return;
-    }
+  const sendEmail = (e) => {
+    e.preventDefault()
+    setIsSending(true)
 
     emailjs
       .sendForm(
@@ -22,98 +24,91 @@ function Contact() {
         '1mstnJaxfyXyK3jGM'
       )
       .then(
-        () => {
-          alert('✅ Message sent successfully!');
-          form.current.reset();
+        (result) => {
+          console.log(result.text)
+          setMessageSent(true)
+          setIsSending(false)
+          form.current.reset()
         },
         (error) => {
-          alert('❌ Failed to send message. Try again.');
-          console.log(error.text);
+          console.log(error.text)
+          setIsSending(false)
+          alert('Failed to send message. Please try again.')
         }
-      );
-  };
+      )
+  }
 
   return (
-    <motion.div
-      id="contact"
-      className="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-white/20"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, type: "spring" }}
-    >
-      <motion.h1
-        className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-indigo-300 to-cyan-400 text-center mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.7 }}
-      >
-        📞 Contact Me
-      </motion.h1>
-      <motion.div
-        className="max-w-2xl mx-auto bg-white/10 p-8 rounded-2xl shadow-lg border border-white/20"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
+    <section id="contact" className="space-y-12 py-12">
+      <motion.h2
+        className="text-3xl font-semibold text-black text-center"
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeIn}
         transition={{ duration: 0.6 }}
       >
-        <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-          >
-            <label className="block text-sm font-medium text-cyan-200">Name</label>
-            <input
-              type="text"
-              name="name"
-              required
-              className="w-full mt-1 px-4 py-2 border border-white/20 bg-white/20 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-300"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <label className="block text-sm font-medium text-cyan-200">Email (.com only)</label>
-            <input
-              type="email"
-              name="email"
-              required
-              className="w-full mt-1 px-4 py-2 border border-white/20 bg-white/20 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-300"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <label className="block text-sm font-medium text-cyan-200">Message</label>
-            <textarea
-              name="message"
-              rows="5"
-              required
-              className="w-full mt-1 px-4 py-2 border border-white/20 bg-white/20 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-300"
-            ></textarea>
-          </motion.div>
-          <motion.button
-            type="submit"
-            className="bg-gradient-to-r from-indigo-400 to-cyan-400 text-white px-6 py-2 rounded-md hover:from-cyan-400 hover:to-indigo-400 transition font-semibold shadow-lg"
-            whileTap={{ scale: 0.97 }}
-            whileHover={{ scale: 1.04 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            Send Message
-          </motion.button>
-        </form>
-      </motion.div>
-    </motion.div>
-  );
+        Contact Me
+      </motion.h2>
+
+      <motion.form
+        ref={form}
+        onSubmit={sendEmail}
+        className="bg-black text-white p-8 rounded-2xl max-w-2xl mx-auto space-y-6 shadow-lg"
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeIn}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-medium">Name</label>
+          <input
+            type="text"
+            name="user_name"
+            required
+            className="w-full p-3 rounded-lg bg-white text-black outline-none focus:ring-2 focus:ring-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium">Email</label>
+          <input
+            type="email"
+            name="user_email"
+            required
+            className="w-full p-3 rounded-lg bg-white text-black outline-none focus:ring-2 focus:ring-white"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="message" className="block text-sm font-medium">Message</label>
+          <textarea
+            name="message"
+            rows="5"
+            required
+            className="w-full p-3 rounded-lg bg-white text-black outline-none focus:ring-2 focus:ring-white"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSending}
+          className={`w-full font-semibold py-3 rounded-lg transition ${
+            isSending
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-white text-black hover:bg-gray-100'
+          }`}
+        >
+          {isSending ? 'Sending...' : 'Send Message'}
+        </button>
+
+        {messageSent && (
+          <p className="text-green-400 text-sm text-center pt-2">
+            Message sent successfully!
+          </p>
+        )}
+      </motion.form>
+    </section>
+  )
 }
 
-export default Contact;
+export default Contact
