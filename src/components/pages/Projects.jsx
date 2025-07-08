@@ -1,38 +1,64 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { PinContainer } from '../pincontainer' // adjust the path if needed
+import React from 'react';
+import { motion } from 'framer-motion';
+import { PinContainer } from '../pincontainer';
+
+// Import skill icons
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJsSquare,
+  FaReact,
+  FaGitAlt,
+  FaPython,
+} from 'react-icons/fa';
+import { SiTailwindcss, SiFramer, SiFigma } from 'react-icons/si';
 
 const projects = [
   {
     title: 'Portfolio Website',
-    description: 'A personal portfolio showcasing projects, skills, and contact information using React and Tailwind CSS.',
-    image: 'https://cdn.freebiesupply.com/logos/large/2x/portfolio-logo-black-and-white.png',
-    link: 'https://your-portfolio-link.com'
+    description:
+      'A personal portfolio showcasing projects, skills, and contact information using React and Tailwind CSS.',
+    image:
+      'https://cdn.freebiesupply.com/logos/large/2x/portfolio-logo-black-and-white.png',
+    link: 'https://your-portfolio-link.com',
   },
   {
     title: 'Web Scraping Tool',
-    description: 'Python-based web scraper that collects and processes data from public web pages using BeautifulSoup.',
-    image: 'https://c8.alamy.com/comp/2H2TM4F/web-scraping-text-written-on-programming-code-abstract-technology-background-of-software-developer-and-computer-script-web-scraping-concept-of-code-o-2H2TM4F.jpg',
-    link: 'https://github.com/yourusername/web-scraper'
-  }
-]
+    description:
+      'Python-based web scraper that collects and processes data from public web pages using BeautifulSoup.',
+    image:
+      'https://c8.alamy.com/comp/2H2TM4F/web-scraping-text-written-on-programming-code-abstract-technology-background-of-software-developer-and-computer-script-web-scraping-concept-of-code-o-2H2TM4F.jpg',
+    link: 'https://github.com/yourusername/web-scraper',
+  },
+];
 
+// Skills with icons
 const skills = [
-  'HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS',
-  'Framer Motion', 'Git', 'Figma', 'Responsive Design'
-]
+  { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" /> },
+  { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500" /> },
+  { name: 'JavaScript', icon: <FaJsSquare className="text-yellow-400" /> },
+  { name: 'React.js', icon: <FaReact className="text-cyan-400" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400" /> },
+  { name: 'Framer Motion', icon: <SiFramer className="text-pink-400" /> },
+  { name: 'Git', icon: <FaGitAlt className="text-orange-600" /> },
+  { name: 'Python', icon: <FaPython className="text-yellow-300" /> },
+  { name: 'Figma', icon: <SiFigma className="text-pink-500" /> },
+];
 
 const fadeIn = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
-}
+};
 
 const Projects = () => {
   return (
-    <section id="projects" className="space-y-16 py-20 bg-white text-black px-6">
+    <section
+      id="projects"
+      className="py-20 px-6 bg-[#0D1B2A] text-white space-y-16"
+    >
       {/* Header */}
       <motion.h2
-        className="text-3xl font-bold text-center"
+        className="text-4xl font-bold text-center text-cyan-400"
         initial="hidden"
         whileInView="visible"
         variants={fadeIn}
@@ -41,8 +67,8 @@ const Projects = () => {
         Projects
       </motion.h2>
 
-      {/* Projects Grid with 3D Effect */}
-      <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      {/* Project Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -50,24 +76,28 @@ const Projects = () => {
             whileInView="visible"
             variants={fadeIn}
             transition={{ delay: index * 0.2 }}
-            className="flex justify-center"
           >
-            <PinContainer title={project.title} href={project.link}>
-              <div className="flex flex-col items-start gap-3 w-72 h-60 text-white">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-32 object-cover rounded-md"
-                />
-                <h3 className="text-lg font-semibold">{project.title}</h3>
-                <p className="text-sm text-white/70 line-clamp-3">{project.description}</p>
-              </div>
+            <PinContainer
+              title={project.title}
+              href={project.link}
+              containerClassName="w-full h-[22rem]"
+              className="w-full h-full flex flex-col"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-40 object-cover rounded-md border border-white/10 mb-4"
+              />
+              <h3 className="text-lg font-semibold mb-1 text-white">
+                {project.title}
+              </h3>
+              <p className="text-sm text-[#CBD5E1]">{project.description}</p>
             </PinContainer>
           </motion.div>
         ))}
       </div>
 
-      {/* Skills */}
+      {/* Skills Section with Icons */}
       <motion.div
         className="max-w-4xl mx-auto text-center mt-16"
         initial="hidden"
@@ -75,20 +105,21 @@ const Projects = () => {
         variants={fadeIn}
         transition={{ duration: 0.6 }}
       >
-        <h3 className="text-2xl font-semibold mb-6">Skills</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-cyan-300">Skills</h3>
         <div className="flex flex-wrap justify-center gap-4">
           {skills.map((skill, i) => (
-            <span
+            <div
               key={i}
-              className="px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-[#1E2A3A] text-white border border-white/10 hover:bg-[#2C3E50] transition duration-300"
             >
-              {skill}
-            </span>
+              {skill.icon}
+              {skill.name}
+            </div>
           ))}
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
