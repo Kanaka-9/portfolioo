@@ -34,7 +34,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#0D1B2A] text-white px-6">
+    <section id="contact" className="pt-20 pb-10 bg-[#0D1B2A] text-white px-6">
       <motion.div
         initial="hidden"
         whileInView="visible"

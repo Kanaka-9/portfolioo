@@ -1,9 +1,13 @@
+// src/pages/Home.jsx
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import Projects from './Projects';
-import Education from './Education';
-import Contact from './Contact';
-import MyPhoto from '../../assets/mee.png'; // 👈 Add your image here
+import Projects from '../pages/Projects';
+import Education from '../pages/Education';
+import Contact from '../pages/Contact';
+import MyPhoto from '../../assets/mee.png';
+import { ShootingStars } from '../shootingstar';
+import { StarsBackground } from '../starsbg';
 
 const fade = {
   hidden: { opacity: 0, y: 40 },
@@ -12,9 +16,16 @@ const fade = {
 
 const Home = () => {
   return (
-    <div className="bg-[#0D1B2A] text-white min-h-screen">
-      <main className="max-w-6xl mx-auto py-20 px-6 space-y-24">
-        {/* Hero Section with Image */}
+    <div className="relative bg-[#0D1B2A] text-white min-h-screen overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 z-0">
+        <StarsBackground className="absolute inset-0" />
+        <ShootingStars className="absolute inset-0" />
+      </div>
+
+      {/* Foreground Content */}
+      <main className="relative z-10 max-w-6xl mx-auto pt-20 px-6 space-y-24 pb-0">
+        {/* Hero Section */}
         <motion.section
           id="hero"
           className="grid grid-cols-1 md:grid-cols-2 items-center gap-12"
@@ -23,7 +34,6 @@ const Home = () => {
           variants={fade}
           transition={{ duration: 0.8 }}
         >
-          {/* Text */}
           <div className="space-y-6 text-center md:text-left">
             <motion.h1
               className="text-5xl sm:text-6xl font-bold text-white"
@@ -43,7 +53,6 @@ const Home = () => {
             </motion.p>
           </div>
 
-          {/* Image */}
           <motion.div
             className="flex justify-center md:justify-end"
             initial={{ opacity: 0, x: 50 }}

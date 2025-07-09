@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PinContainer } from '../pincontainer';
-
-// Import skill icons
 import {
   FaHtml5,
   FaCss3Alt,
@@ -11,7 +9,7 @@ import {
   FaGitAlt,
   FaPython,
 } from 'react-icons/fa';
-import { SiTailwindcss, SiFramer, SiFigma } from 'react-icons/si';
+import { SiTailwindcss, SiFramer } from 'react-icons/si';
 
 const projects = [
   {
@@ -32,17 +30,15 @@ const projects = [
   },
 ];
 
-// Skills with icons
 const skills = [
-  { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" /> },
-  { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500" /> },
-  { name: 'JavaScript', icon: <FaJsSquare className="text-yellow-400" /> },
-  { name: 'React.js', icon: <FaReact className="text-cyan-400" /> },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400" /> },
-  { name: 'Framer Motion', icon: <SiFramer className="text-pink-400" /> },
-  { name: 'Git', icon: <FaGitAlt className="text-orange-600" /> },
-  { name: 'Python', icon: <FaPython className="text-yellow-300" /> },
-  { name: 'Figma', icon: <SiFigma className="text-pink-500" /> },
+  { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-xl" /> },
+  { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-xl" /> },
+  { name: 'JavaScript', icon: <FaJsSquare className="text-yellow-400 text-xl" /> },
+  { name: 'React.js', icon: <FaReact className="text-cyan-400 text-xl" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400 text-xl" /> },
+  { name: 'Framer Motion', icon: <SiFramer className="text-pink-400 text-xl" /> },
+  { name: 'Git', icon: <FaGitAlt className="text-orange-600 text-xl" /> },
+  { name: 'Python', icon: <FaPython className="text-yellow-300 text-xl" /> },
 ];
 
 const fadeIn = {
@@ -67,7 +63,7 @@ const Projects = () => {
         Projects
       </motion.h2>
 
-      {/* Project Grid */}
+      {/* Project Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
