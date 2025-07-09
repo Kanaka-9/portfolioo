@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -34,7 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-20 pb-10 bg-[#0D1B2A] text-white px-6">
+    <section id="contact" className="pt-10 pb-10 bg-[#0D1B2A] text-white px-6">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -42,7 +43,7 @@ const Contact = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] text-transparent bg-clip-text">
+        <h2 className="text-4xl font-bold text-[#06B6D4]">
           Contact Me
         </h2>
         <p className="mt-2 text-cyan-100 text-sm sm:text-base">
@@ -50,63 +51,104 @@ const Contact = () => {
         </p>
       </motion.div>
 
-      <motion.form
-        ref={form}
-        onSubmit={sendEmail}
-        className="bg-[#1E2A3A] p-8 rounded-2xl max-w-2xl mx-auto space-y-6 shadow-lg"
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeIn}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <div className="space-y-2">
-          <label className="block text-sm text-cyan-100">Name</label>
-          <input
-            type="text"
-            name="user_name"
-            className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
-            required
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="block text-sm text-cyan-100">Email</label>
-          <input
-            type="email"
-            name="user_email"
-            className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
-            required
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="block text-sm text-cyan-100">Message</label>
-          <textarea
-            name="message"
-            rows="5"
-            className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
-            required
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          disabled={isSending}
-          className={`w-full font-semibold py-3 rounded-lg transition ${
-            isSending
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] text-white hover:opacity-90'
-          }`}
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-start">
+        {/* Left: Contact Form */}
+        <motion.form
+          ref={form}
+          onSubmit={sendEmail}
+          className="flex-1 bg-[#1E2A3A] p-8 rounded-2xl shadow-lg space-y-6 border border-cyan-400"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {isSending ? 'Sending...' : 'Send Message'}
-        </button>
+          <h3 className="text-2xl font-semibold mb-2">Send a Message</h3>
 
-        {messageSent && (
-          <p className="text-green-400 text-sm text-center pt-2">
-            Message sent successfully!
-          </p>
-        )}
-      </motion.form>
+          <div className="space-y-2">
+            <label className="text-sm text-cyan-100">Your Name</label>
+            <input
+              type="text"
+              name="user_name"
+              className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm text-cyan-100">Your Email</label>
+            <input
+              type="email"
+              name="user_email"
+              className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm text-cyan-100">Your Message</label>
+            <textarea
+              name="message"
+              rows="5"
+              className="w-full p-3 rounded-lg bg-[#2D3A4A] text-white outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="Write your message here..."
+              required
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSending}
+            className={`w-full font-semibold py-3 rounded-lg transition text-white ${
+              isSending
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-[#06B6D4] hover:bg-[#0891b2]'
+            }`}
+          >
+            {isSending ? 'Sending...' : 'Send Message'}
+          </button>
+
+          {messageSent && (
+            <p className="text-green-400 text-sm text-center pt-2">
+              Message sent successfully!
+            </p>
+          )}
+        </motion.form>
+
+        {/* Right: Contact Info */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex-1 flex flex-col justify-between h-full"
+        >
+          <div className="bg-[#1E2A3A] rounded-2xl p-8 shadow-lg border border-cyan-400 space-y-6">
+            <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
+            <div className="space-y-4 text-cyan-100 text-sm">
+              <div className="flex items-start gap-3">
+                <FaMapMarkerAlt className="text-lg mt-1" />
+                <div>
+                  <p className="font-medium text-white">Address</p>
+                  <p>Hyderabad, India</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <FaPhoneAlt className="text-lg mt-1" />
+                <div>
+                  <p className="font-medium text-white">Phone</p>
+                  <p>+91-8988034999</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+
+              </div>
+            </div>
+          </div>
+
+        </motion.div>
+      </div>
     </section>
   );
 };

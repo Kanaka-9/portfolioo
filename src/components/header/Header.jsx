@@ -28,9 +28,9 @@ const Header = () => {
       }`}
     >
       <div className="flex justify-between items-center p-4 max-w-6xl mx-auto">
-        <h1 className="text-xl font-bold text-white">
+        <a href="#hero" className="text-xl font-sans font-semibold text-white hover:text-cyan-300 transition">
           <span className="text-cyan-400">Vaishnavi</span>
-        </h1>
+        </a>
         <nav className="space-x-6 text-sm sm:text-base font-medium">
           <a href="#hero" className="hover:text-cyan-300 border-b-2 border-transparent hover:border-cyan-400 pb-1 transition">Home</a>
           <a href="#projects" className="hover:text-cyan-300 border-b-2 border-transparent hover:border-cyan-400 pb-1 transition">Projects</a>

@@ -6,59 +6,86 @@ import VikasLogo from '../../assets/vikaslogo.png';
 
 const educationList = [
   {
-    degree: 'B.Tech in Electronics and Communication Engineering',
     institution: 'VNRVJIET',
+    degree: 'B.Tech in Electronics and Communication Engineering',
     duration: '2022 – 2026',
-    description: 'Focusing on web development, UI/UX design, and software engineering principles.',
+    description:
+      'Focusing on web development, UI/UX design, and software engineering principles.',
     grade: 'CGPA: 7.9',
     logo: VNRLogo,
   },
   {
-    degree: 'Intermediate (MPC)',
     institution: 'Narayana Junior College',
+    degree: 'Intermediate (MPC)',
     duration: '2020 – 2022',
-    description: 'Mathematics, Physics, and Chemistry with emphasis on problem solving and logical reasoning.',
+    description:
+      'Mathematics, Physics, and Chemistry with emphasis on problem solving and logical reasoning.',
     grade: 'Percentage: 98.1%',
     logo: NarayanaLogo,
   },
   {
-    degree: 'CBSE (Class 10)',
     institution: 'Vikas The Concept School',
+    degree: 'CBSE (Class 10)',
     duration: '2019 – 2020',
-    description: 'Completed secondary education with strong academic foundation.',
+    description:
+      'Completed secondary education with strong academic foundation.',
     grade: 'Percentage: 93.6%',
     logo: VikasLogo,
   },
 ];
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const Education = () => {
   return (
-    <section id="education" className="py-20 px-6 bg-[#0D1B2A] text-white">
+    <section id="education" className="pt-20 pb-10 px-6 bg-[#0D1B2A] text-white">
       <motion.h2
-        className="text-3xl font-semibold text-center bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#06B6D4]"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        className="text-3xl font-semibold text-center text-cyan-400 mb-12"
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeIn}
         transition={{ duration: 0.6 }}
       >
         Education
       </motion.h2>
 
-      <div className="mt-12 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid gap-10 max-w-4xl mx-auto">
         {educationList.map((edu, index) => (
           <motion.div
             key={index}
-            className="relative bg-gradient-to-br from-cyan-500 to-pink-500 p-[2px] rounded-xl overflow-hidden shadow-xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            className="bg-[#1E2A3A] border border-cyan-400 rounded-lg p-6 shadow-md flex flex-col sm:flex-row items-center gap-6
+                       transition-all duration-300 ease-in-out 
+                       hover:scale-[1.02] hover:border-cyan-500 
+                       hover:shadow-lg hover:shadow-cyan-500/30 
+                       hover:bg-[#223b53]"
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeIn}
+            transition={{ delay: index * 0.2 }}
           >
-            <div className="relative bg-[#1E2A3A] rounded-xl p-6 flex flex-col items-center h-full text-center">
-              <img src={edu.logo} alt={edu.institution} className="w-16 h-16 object-contain rounded-md mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-1">{edu.degree}</h3>
-              <p className="text-sm text-indigo-100">{edu.institution}</p>
-              <p className="text-xs text-cyan-300 mb-2">{edu.duration}</p>
-              <p className="text-sm text-slate-200 mb-1">{edu.description}</p>
-              <p className="text-sm font-medium text-cyan-400">{edu.grade}</p>
+            {/* Institution Logo */}
+            <div className="w-20 h-20 flex-shrink-0">
+              <img
+                src={edu.logo}
+                alt={edu.institution}
+                className="w-full h-full object-contain rounded-md"
+              />
+            </div>
+
+            {/* Education Info */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-1">
+                {edu.institution}
+              </h3>
+              <p className="text-sm text-cyan-300 mb-1">{edu.degree}</p>
+              <p className="text-xs text-gray-400 mb-2">{edu.duration}</p>
+              <p className="text-sm text-slate-200 mb-2">
+                <span className="font-semibold text-gray-300">Grade:</span> {edu.grade}
+              </p>
+              <p className="text-sm text-slate-300">{edu.description}</p>
             </div>
           </motion.div>
         ))}

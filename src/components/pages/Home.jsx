@@ -8,7 +8,7 @@ import Contact from '../pages/Contact';
 import MyPhoto from '../../assets/mee.png';
 import { ShootingStars } from '../shootingstar';
 import { StarsBackground } from '../starsbg';
-import { TracingBeam } from '../tracingbeam'; // ✅ Import added
+import { TracingBeam } from '../tracingbeam';
 
 const fade = {
   hidden: { opacity: 0, y: 40 },
@@ -17,7 +17,7 @@ const fade = {
 
 const Home = () => {
   return (
-    <TracingBeam> {/* ✅ TracingBeam wraps the whole layout */}
+    <TracingBeam>
       <div className="relative bg-[#0D1B2A] text-white min-h-screen overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
@@ -38,7 +38,7 @@ const Home = () => {
           >
             <div className="space-y-6 text-center md:text-left">
               <motion.h1
-                className="text-5xl sm:text-6xl font-bold text-white"
+                className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(34,211,238,0.5)]"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
@@ -89,14 +89,35 @@ const Home = () => {
               variants={fade}
               transition={{ delay: 0.2 }}
             >
-              I'm currently pursuing my B.Tech in Electronics and Communication
-              where I focus on web development and UI/UX design. I enjoy
-              building elegant, responsive interfaces using React and Tailwind
-              CSS. I'm always learning, exploring new tech, and building side
-              projects. I'm also passionate about open-source and crafting great
-              user experiences.
+              I’m a passionate frontend developer currently pursuing my B.Tech in Electronics and Communication Engineering. 
+              With a strong interest in design and usability, I specialize in building modern, responsive user interfaces using 
+              <span className="text-cyan-300 font-semibold"> React.js</span> and <span className="text-cyan-300 font-semibold">Tailwind CSS</span>. 
+              <br /><br />
+              I'm experienced in tools like <span className="text-cyan-300 font-semibold">Framer Motion</span>, 
+              <span className="text-cyan-300 font-semibold"> Git/GitHub</span>, and have dabbled in 
+              <span className="text-cyan-300 font-semibold"> Python</span> for automation and scripting. 
+              I love turning creative ideas into practical applications and continuously push myself to learn new technologies and best practices.
+              When I’m not coding, I enjoy exploring UI/UX trends, contributing to open-source projects, and developing side projects to experiment with new frameworks. 
+              I'm currently seeking opportunities where I can grow as a developer and work on impactful, user-focused projects.
             </motion.p>
           </section>
+
+          {/* Resume Button */}
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            variants={fade}
+            transition={{ delay: 0.3 }}
+          >
+            <a
+              href="/resume%20(2).pdf"
+              download
+              className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition duration-300"
+            >
+              Download Resume
+            </a>
+          </motion.div>
 
           {/* Projects */}
           <Projects />
