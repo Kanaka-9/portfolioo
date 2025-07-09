@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -43,16 +43,57 @@ const Contact = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h2 className="text-4xl font-bold text-[#06B6D4]">
-          Contact Me
-        </h2>
+        <h2 className="text-4xl font-bold text-[#06B6D4]">Contact Me</h2>
         <p className="mt-2 text-cyan-100 text-sm sm:text-base">
           I'd love to hear from you! Whether it's a project, opportunity, or just a hello.
         </p>
       </motion.div>
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-start">
-        {/* Left: Contact Form */}
+        {/* Left Side: Contact Info & Quote */}
+        <div className="flex-1 space-y-8 flex flex-col items-center">
+          {/* Contact Info */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeIn}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-[#1E2A3A] rounded-2xl p-8 shadow-lg border border-cyan-400 w-full max-w-md"
+          >
+            <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
+            <div className="space-y-4 text-cyan-100 text-sm">
+              <div className="flex items-start gap-3">
+                <FaMapMarkerAlt className="text-lg mt-1 text-cyan-300" />
+                <div>
+                  <p className="font-medium text-white">Address</p>
+                  <p>Hyderabad, India</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <FaPhoneAlt className="text-lg mt-1 text-cyan-300" />
+                <div>
+                  <p className="font-medium text-white">Phone</p>
+                  <p>+91-8988034999</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Quote Box */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeIn}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-[#1E2A3A] rounded-2xl p-8 shadow-lg border border-cyan-400 w-full max-w-md text-center"
+          >
+            <p className="text-cyan-300 italic text-lg md:text-xl leading-relaxed">
+              "Every great idea begins with a blank screen.What you do with it defines your journey."
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Right Side: Contact Form */}
         <motion.form
           ref={form}
           onSubmit={sendEmail}
@@ -60,7 +101,7 @@ const Contact = () => {
           initial="hidden"
           whileInView="visible"
           variants={fadeIn}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
           <h3 className="text-2xl font-semibold mb-2">Send a Message</h3>
 
@@ -103,7 +144,7 @@ const Contact = () => {
             className={`w-full font-semibold py-3 rounded-lg transition text-white ${
               isSending
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#06B6D4] hover:bg-[#0891b2]'
+                : 'bg-gradient-to-r from-blue-600 to-cyan-400 hover:from-blue-700 hover:to-cyan-500'
             }`}
           >
             {isSending ? 'Sending...' : 'Send Message'}
@@ -115,39 +156,6 @@ const Contact = () => {
             </p>
           )}
         </motion.form>
-
-        {/* Right: Contact Info */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeIn}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex-1 flex flex-col justify-between h-full"
-        >
-          <div className="bg-[#1E2A3A] rounded-2xl p-8 shadow-lg border border-cyan-400 space-y-6">
-            <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
-            <div className="space-y-4 text-cyan-100 text-sm">
-              <div className="flex items-start gap-3">
-                <FaMapMarkerAlt className="text-lg mt-1" />
-                <div>
-                  <p className="font-medium text-white">Address</p>
-                  <p>Hyderabad, India</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <FaPhoneAlt className="text-lg mt-1" />
-                <div>
-                  <p className="font-medium text-white">Phone</p>
-                  <p>+91-8988034999</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-
-              </div>
-            </div>
-          </div>
-
-        </motion.div>
       </div>
     </section>
   );
