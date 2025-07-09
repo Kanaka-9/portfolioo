@@ -8,6 +8,7 @@ import Contact from '../pages/Contact';
 import MyPhoto from '../../assets/mee.png';
 import { ShootingStars } from '../shootingstar';
 import { StarsBackground } from '../starsbg';
+import { TracingBeam } from '../tracingbeam'; // ✅ Import added
 
 const fade = {
   hidden: { opacity: 0, y: 40 },
@@ -16,91 +17,98 @@ const fade = {
 
 const Home = () => {
   return (
-    <div className="relative bg-[#0D1B2A] text-white min-h-screen overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 z-0">
-        <StarsBackground className="absolute inset-0" />
-        <ShootingStars className="absolute inset-0" />
-      </div>
+    <TracingBeam> {/* ✅ TracingBeam wraps the whole layout */}
+      <div className="relative bg-[#0D1B2A] text-white min-h-screen overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0">
+          <StarsBackground className="absolute inset-0" />
+          <ShootingStars className="absolute inset-0" />
+        </div>
 
-      {/* Foreground Content */}
-      <main className="relative z-10 max-w-6xl mx-auto pt-20 px-6 space-y-24 pb-0">
-        {/* Hero Section */}
-        <motion.section
-          id="hero"
-          className="grid grid-cols-1 md:grid-cols-2 items-center gap-12"
-          initial="hidden"
-          animate="visible"
-          variants={fade}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="space-y-6 text-center md:text-left">
-            <motion.h1
-              className="text-5xl sm:text-6xl font-bold text-white"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+        {/* Foreground Content */}
+        <main className="relative z-10 max-w-6xl mx-auto pt-20 px-6 space-y-24 pb-0">
+          {/* Hero Section */}
+          <motion.section
+            id="hero"
+            className="grid grid-cols-1 md:grid-cols-2 items-center gap-12"
+            initial="hidden"
+            animate="visible"
+            variants={fade}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="space-y-6 text-center md:text-left">
+              <motion.h1
+                className="text-5xl sm:text-6xl font-bold text-white"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                Hi, I’m Sri Kanaka Vaishnavi
+              </motion.h1>
+              <motion.p
+                className="text-xl sm:text-2xl text-indigo-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                A frontend developer crafting elegant & responsive experiences
+              </motion.p>
+            </div>
+
+            <motion.div
+              className="flex justify-center md:justify-end"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <img
+                src={MyPhoto}
+                alt="Sri Kanaka Vaishnavi"
+                className="w-64 h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl"
+              />
+            </motion.div>
+          </motion.section>
+
+          {/* About Me */}
+          <section
+            id="about"
+            className="bg-[#1E2A3A] p-8 rounded-2xl space-y-6 shadow-md"
+          >
+            <motion.h2
+              className="text-3xl font-semibold text-cyan-200"
+              initial="hidden"
+              whileInView="visible"
+              variants={fade}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="leading-relaxed text-white"
+              initial="hidden"
+              whileInView="visible"
+              variants={fade}
               transition={{ delay: 0.2 }}
             >
-              Hi, I’m Sri Kanaka Vaishnavi
-            </motion.h1>
-            <motion.p
-              className="text-xl sm:text-2xl text-indigo-200"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              A frontend developer crafting elegant & responsive experiences
+              I'm currently pursuing my B.Tech in Electronics and Communication
+              where I focus on web development and UI/UX design. I enjoy
+              building elegant, responsive interfaces using React and Tailwind
+              CSS. I'm always learning, exploring new tech, and building side
+              projects. I'm also passionate about open-source and crafting great
+              user experiences.
             </motion.p>
-          </div>
+          </section>
 
-          <motion.div
-            className="flex justify-center md:justify-end"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <img
-              src={MyPhoto}
-              alt="Sri Kanaka Vaishnavi"
-              className="w-64 h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl"
-            />
-          </motion.div>
-        </motion.section>
+          {/* Projects */}
+          <Projects />
 
-        {/* About Me */}
-        <section id="about" className="bg-[#1E2A3A] p-8 rounded-2xl space-y-6 shadow-md">
-          <motion.h2
-            className="text-3xl font-semibold text-cyan-200"
-            initial="hidden"
-            whileInView="visible"
-            variants={fade}
-          >
-            About Me
-          </motion.h2>
-          <motion.p
-            className="leading-relaxed text-white"
-            initial="hidden"
-            whileInView="visible"
-            variants={fade}
-            transition={{ delay: 0.2 }}
-          >
-            I'm currently pursuing my B.Tech in Electronics and Communication where I focus on web development
-            and UI/UX design. I enjoy building elegant, responsive interfaces using React and Tailwind CSS.
-            I'm always learning, exploring new tech, and building side projects. I'm also passionate about
-            open-source and crafting great user experiences.
-          </motion.p>
-        </section>
+          {/* Education */}
+          <Education />
 
-        {/* Projects */}
-        <Projects />
-
-        {/* Education */}
-        <Education />
-
-        {/* Contact */}
-        <Contact />
-      </main>
-    </div>
+          {/* Contact */}
+          <Contact />
+        </main>
+      </div>
+    </TracingBeam>
   );
 };
 
