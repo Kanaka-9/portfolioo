@@ -31,7 +31,7 @@ const Header = () => {
         <a href="#hero" className="text-xl font-sans font-semibold text-white hover:text-cyan-300 transition">
           <span className="text-cyan-400">Vaishnavi</span>
         </a>
-        <nav className="space-x-6 text-sm sm:text-base font-medium">
+        <nav className="space-x-20 text-sm sm:text-base font-medium">
           <a href="#hero" className="hover:text-cyan-300 border-b-2 border-transparent hover:border-cyan-400 pb-1 transition">Home</a>
           <a href="#projects" className="hover:text-cyan-300 border-b-2 border-transparent hover:border-cyan-400 pb-1 transition">Projects</a>
           <a href="#education" className="hover:text-cyan-300 border-b-2 border-transparent hover:border-cyan-400 pb-1 transition">Education</a>

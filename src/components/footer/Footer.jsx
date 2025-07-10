@@ -1,16 +1,16 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <motion.footer
-      className="bg-[#0D1B2A] text-white py-8"
+      className="bg-[#0D1B2A] text-white pt-6 pb-4" // adjusted padding
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="max-w-4xl mx-auto text-center space-y-6">
+      <div className="max-w-4xl mx-auto text-center space-y-4">
         <div className="flex justify-center space-x-8 text-2xl text-cyan-300">
           <a
             href="https://github.com/Kanaka-9"
@@ -48,7 +48,7 @@ const Footer = () => {
         </p>
       </div>
     </motion.footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

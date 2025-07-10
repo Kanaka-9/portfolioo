@@ -60,7 +60,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="pt-20 pb-10 px-6 bg-[#0D1B2A] text-white space-y-10"
+      className="pt-20 pb-4 px-6 bg-[#0D1B2A] text-white space-y-10"
     >
       <h2 className="text-4xl font-bold text-center text-cyan-400">Projects</h2>
 

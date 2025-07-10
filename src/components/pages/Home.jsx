@@ -26,7 +26,7 @@ const Home = () => {
         </div>
 
         {/* Foreground Content */}
-        <main className="relative z-10 max-w-6xl mx-auto pt-20 px-6 space-y-24 pb-0">
+        <main className="relative z-10 max-w-6xl mx-auto pt-16 px-6 space-y-12 pb-0">
           {/* Hero Section */}
           <motion.section
             id="hero"
@@ -71,9 +71,10 @@ const Home = () => {
 
           {/* About Me */}
           <section
-            id="about"
-            className="bg-[#1E2A3A] p-8 rounded-2xl space-y-6 shadow-md"
-          >
+  id="about"
+  className="bg-[#1E2A3A] p-8 rounded-2xl space-y-6 shadow-md border border-cyan-400"
+>
+
             <motion.h2
               className="text-3xl font-semibold text-cyan-200"
               initial="hidden"
@@ -111,12 +112,13 @@ const Home = () => {
             transition={{ delay: 0.3 }}
           >
             <a
-              href="/resume%20(2).pdf"
-              download
-              className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-medium px-6 py-2 rounded-lg shadow-lg transition duration-300"
-            >
-              Download Resume
-            </a>
+  href="/resume%20(2).pdf"
+  download
+  className="inline-block px-6 py-2 rounded-lg border border-cyan-400 text-cyan-400 font-medium hover:bg-cyan-500 hover:text-white transition duration-300"
+>
+  Download Resume
+</a>
+
           </motion.div>
 
           {/* Projects */}
