@@ -41,7 +41,7 @@ const fadeIn = {
 
 const Education = () => {
   return (
-    <section id="education" className="pt-20 pb-10 px-6 bg-[#0D1B2A] text-white">
+    <section id="education" className="pt-10 pb-10 px-6 bg-[#0D1B2A] text-white">
       <motion.h2
         className="text-3xl font-semibold text-center text-cyan-400 mb-12"
         initial="hidden"
@@ -56,11 +56,12 @@ const Education = () => {
         {educationList.map((edu, index) => (
           <motion.div
             key={index}
-            className="bg-[#1E2A3A] border border-cyan-400 rounded-lg p-6 shadow-md flex flex-col sm:flex-row items-center gap-6
+            className="relative bg-[#1E2A3A] border border-cyan-400 rounded-lg p-6 shadow-md flex flex-col sm:flex-row items-center gap-6
                        transition-all duration-300 ease-in-out 
                        hover:scale-[1.02] hover:border-cyan-500 
                        hover:shadow-lg hover:shadow-cyan-500/30 
-                       hover:bg-[#223b53]"
+                       hover:bg-[#223b53]
+                       before:content-[''] before:absolute before:left-0 before:top-4 before:bottom-4 before:w-1 before:bg-cyan-400 before:rounded"
             initial="hidden"
             whileInView="visible"
             variants={fadeIn}
@@ -76,7 +77,7 @@ const Education = () => {
             </div>
 
             {/* Education Info */}
-            <div>
+            <div className="ml-2">
               <h3 className="text-lg font-semibold text-white mb-1">
                 {edu.institution}
               </h3>
