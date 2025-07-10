@@ -96,9 +96,7 @@ const Home = () => {
               <br /><br />
               I'm experienced in tools like <span className="text-cyan-300 font-semibold">Framer Motion</span>, 
               <span className="text-cyan-300 font-semibold"> Git/GitHub</span>, and have dabbled in 
-              <span className="text-cyan-300 font-semibold"> Python</span> for automation and scripting. 
-              I love turning creative ideas into practical applications and continuously push myself to learn new technologies and best practices.
-              When I’m not coding, I enjoy exploring UI/UX trends, contributing to open-source projects, and developing side projects to experiment with new frameworks. 
+              <span className="text-cyan-300 font-semibold"> Python</span> for automation and scripting.When I’m not coding, I enjoy exploring UI/UX trends, contributing to open-source projects, and developing side projects to experiment with new frameworks. 
               I'm currently seeking opportunities where I can grow as a developer and work on impactful, user-focused projects.
             </motion.p>
           </section>
